@@ -44,9 +44,9 @@ The app is **responsive**, **accessible**, and optimized for performance.
 ---
 
 ## Screenshot
-![Screenshot 1](./Screenshot 1.png) 
-![Screenshot 2](./Screenshot 2.png) 
-![Screenshot 3](./Screenshot 3.png) 
+![Screenshot](./Screenshot1.png) 
+![Screenshot](./Screenshot2.png) 
+![Screenshot](./Screenshot3.png) 
 ---
 
 ## Installation / Usage
