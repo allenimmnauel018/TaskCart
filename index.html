@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ApexPlanet — Full Project Implementation (Single Page)</title>
+  <meta name="description"
+    content="Portfolio + To-Do/Notes with localStorage + Product Listing (filter & sort) — single-page site in pure HTML/CSS/JS." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="container">
+      <div class="brand" aria-label="ApexPlanet">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 15c5-1 7-10 18-12-4 4-6 11-12 14-3 1-5 1-6-2Z" fill="currentColor" opacity=".2" />
+          <path d="M4 18c6 0 9-7 17-14-2 6-6 16-14 18-2 0-4-1-3-4Z" fill="currentColor" />
+        </svg>
+        <span>TaskCart</span>
+      </div>
+
+      <div class="nav" role="tablist" aria-label="Primary">
+        <button class="tab-btn active" data-tab="portfolio" role="tab" aria-selected="true">
+          Portfolio
+        </button>
+        <button class="tab-btn" data-tab="todo" role="tab" aria-selected="false">
+          To-Do / Notes
+        </button>
+        <button class="tab-btn" data-tab="products" role="tab" aria-selected="false">
+          Products
+        </button>
+      </div>
+
+      <div class="hero-grid container">
+        <div>
+          <h1 class="title">Full Project Implementation — Single Page</h1>
+          <p class="subtitle">
+            Built only with HTML, CSS, and JavaScript. Responsive, performant,
+            and dynamic — featuring a professional portfolio, a persistent
+            to-do app, and an interactive product catalog.
+          </p>
+          <div class="chips" id="heroChips"></div>
+        </div>
+        <div class="grid">
+          <div class="stat">
+            <b>3</b> modules • Portfolio, To-Do, Products
+          </div>
+          <div class="stat"><b>0</b> dependencies • Pure JS</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main class="container">
+    <!-- ===== PORTFOLIO ===== -->
+    <section id="portfolio" class="panel active" aria-labelledby="tab-portfolio">
+      <div class="grid cols-3">
+        <div class="card about">
+          <div class="section-title">
+            <h2>About</h2>
+          </div>
+          <p>
+            Hello! I’m <b>Allen Immanuel</b>, a front-end developer passionate about creating clean, fast, and engaging
+            web experiences. I specialize in semantic HTML, modern CSS, and accessible, framework-free JavaScript,
+            delivering solutions that are both user-friendly and performant.
+          </p>
+          <div class="skill-badges">
+            <span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span>
+            <span class="skill">Accessibility</span><span class="skill">Performance</span><span class="skill">UX</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">
+            <h2>Projects</h2>
+          </div>
+          <div class="grid">
+            <div class="proj">
+              <div class="thumb">UI</div>
+              <div>
+                <h4>Animated SPA Shell</h4>
+                <p>
+                  Single-file, dependency-free application shell with
+                  keyboard-navigable tabs, focus management, and smooth
+                  transitions.
+                </p>
+              </div>
+            </div>
+            <div class="proj">
+              <div class="thumb">LS</div>
+              <div>
+                <h4>LocalStorage Notes</h4>
+                <p>
+                  To-do and notes manager supporting priorities, due dates,
+                  live search, and persistence across sessions.
+                </p>
+              </div>
+            </div>
+            <div class="proj">
+              <div class="thumb">FX</div>
+              <div>
+                <h4>Catalog Filters</h4>
+                <p>
+                  Product grid with category filters, price range slider, text
+                  search, and sort by rating/price — all in vanilla JS.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card contact">
+          <div class="section-title">
+            <h2>Contact</h2>
+          </div>
+          <form id="contactForm">
+            <input required placeholder="Your name" name="name" />
+            <input required type="email" placeholder="Email address" name="email" />
+            <textarea rows="4" placeholder="Message" name="msg"></textarea>
+            <div class="inline-actions">
+              <button class="btn" type="submit">Send Message</button>
+              <button class="btn ghost" type="reset">Reset</button>
+            </div>
+            <small id="contactStatus" aria-live="polite"></small>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TO-DO / NOTES ===== -->
+    <section id="todo" class="panel" aria-labelledby="tab-todo">
+      <div class="card">
+        <div class="section-title">
+          <h2>To-Do / Note-Taking (with localStorage)</h2>
+          <div class="searchbar">
+            <input id="todoSearch" placeholder="Search tasks..." />
+            <select id="filterStatus">
+              <option value="all">All</option>
+              <option value="open">Open</option>
+              <option value="done">Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="todo-wrap">
+          <!-- Add / Edit form -->
+          <form id="todoForm" class="card" style="box-shadow: none; border: 1px dashed #cfe0e9">
+            <div class="grid cols-2">
+              <div>
+                <label>Title</label>
+                <input id="todoTitle" required maxlength="80" placeholder="e.g., Design product cards" />
+              </div>
+              <div>
+                <label>Due date</label>
+                <input id="todoDue" type="date" />
+              </div>
+              <div>
+                <label>Priority</label>
+                <select id="todoPrio">
+                  <option value="1">High</option>
+                  <option value="2" selected>Medium</option>
+                  <option value="3">Low</option>
+                </select>
+              </div>
+              <div>
+                <label>Category</label>
+                <input id="todoCat" placeholder="e.g., Work, Personal" />
+              </div>
+            </div>
+            <div class="inline-actions" style="margin-top: 10px">
+              <button class="btn" type="submit" id="saveTaskBtn">
+                Add Task
+              </button>
+              <button class="btn ghost" type="button" id="clearAllBtn">
+                Clear All
+              </button>
+            </div>
+            <input type="hidden" id="editingId" />
+          </form>
+
+          <!-- List -->
+          <div>
+            <div class="todo-list" id="todoList" role="list"></div>
+            <div class="empty" id="todoEmpty" hidden>
+              No tasks yet — add your first one above ✨
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <section id="products" class="panel" aria-labelledby="tab-products">
+      <div class="card">
+        <div class="section-title">
+          <h2>Product Listing (Filter & Sort)</h2>
+        </div>
+
+        <div class="filters">
+          <input id="q" placeholder="Search products..." />
+          <select id="cat">
+            <option value="all">All Categories</option>
+          </select>
+          <select id="sort">
+            <option value="featured">Sort: Featured</option>
+            <option value="rating">Sort: Rating (high → low)</option>
+            <option value="priceAsc">Sort: Price (low → high)</option>
+            <option value="priceDesc">Sort: Price (high → low)</option>
+          </select>
+          <div class="inline-actions" style="gap: 10px">
+            <label>Max Price</label>
+            <input type="range" id="priceMax" min="10" max="999" step="1" />
+            <span class="pill" id="priceLabel"></span>
+          </div>
+        </div>
+
+        <div class="cards" id="cards"></div>
+        <div class="empty" id="catalogEmpty" hidden>
+          No matches. Try loosening filters.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built with ❤️ using semantic HTML, modern CSS, and vanilla JS. No
+    frameworks. © ApexPlanet
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
